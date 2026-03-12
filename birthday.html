@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday! 🎂🎉</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --coral: #ff6b6b;
+        --peach: #ffa07a;
+        --gold: #ffd700;
+        --mint: #98ffcc;
+        --sky: #87ceeb;
+        --lavender: #dda0dd;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Quicksand", sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(
+          160deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-y: auto;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      body.in {
+        opacity: 1;
+      }
+      body.out {
+        opacity: 0;
+      }
+
+      /* ── Phase A: Ohhh ──────────────────────── */
+      #ohhh-wrap {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: linear-gradient(
+          160deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease;
+      }
+      #ohhh-wrap.gone {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #ohhh-text {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.4rem, 9vw, 5.5rem);
+        color: #fff;
+        text-shadow:
+          0 0 30px rgba(255, 215, 0, 0.6),
+          0 0 60px rgba(255, 107, 107, 0.4);
+        text-align: center;
+        padding: 0 24px;
+        animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      @keyframes pop {
+        from {
+          transform: scale(0.4);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .pop-again {
+        animation: pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+
+      /* ── Phase B: Birthday reveal ───────────── */
+      #bday-wrap {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 40px 20px 80px;
+      }
+      #bday-wrap.show {
+        display: flex;
+      }
+
+      .names-banner {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 6vw, 3.5rem);
+        font-style: italic;
+        background: linear-gradient(
+          90deg,
+          var(--coral),
+          var(--gold),
+          var(--mint),
+          var(--sky)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        line-height: 1.3;
+        margin-bottom: 10px;
+        animation: fadeUp 0.7s ease both;
+      }
+      .names-sub {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        margin-bottom: 48px;
+        animation: fadeUp 0.7s 0.15s ease both;
+      }
+      @keyframes fadeUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Cards */
+      .cards-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        width: 100%;
+        max-width: 980px;
+        margin-bottom: 48px;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 32px 28px;
+        flex: 1;
+        min-width: 260px;
+        max-width: 300px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        animation: fadeUp 0.7s ease both;
+      }
+      .card:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.35s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      .card-icon {
+        font-size: 2.8rem;
+        margin-bottom: 14px;
+      }
+      .card-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-style: italic;
+        color: var(--gold);
+        margin-bottom: 10px;
+      }
+      .card-text {
+        font-size: 0.97rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+      }
+
+      /* Letter */
+      .letter-wrap {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 28px;
+        padding: 40px 36px;
+        max-width: 680px;
+        width: 100%;
+        backdrop-filter: blur(10px);
+        animation: fadeUp 0.7s 0.6s ease both;
+        margin-bottom: 48px;
+      }
+      .letter-heading {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-style: italic;
+        color: var(--gold);
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .letter-body {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.85;
+      }
+      .letter-body p {
+        margin-bottom: 16px;
+      }
+      .letter-body p:last-child {
+        margin-bottom: 0;
+      }
+      .hi {
+        color: var(--coral);
+        font-weight: 700;
+      }
+      .hi2 {
+        color: var(--mint);
+        font-weight: 700;
+      }
+      .hi3 {
+        color: var(--lavender);
+        font-weight: 700;
+      }
+
+      /* Closing */
+      .closing {
+        text-align: center;
+        font-size: 3rem;
+        animation: fadeUp 0.7s 0.75s ease both;
+        margin-bottom: 20px;
+      }
+      .closing-text {
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.7);
+        animation: fadeUp 0.7s 0.85s ease both;
+      }
+
+      /* Fireworks canvas */
+      #fw-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* Confetti */
+      .confetti-piece {
+        position: fixed;
+        top: -20px;
+        z-index: 10;
+        pointer-events: none;
+        animation: fall linear forwards;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(110vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* Sparkle on click */
+      .sparkle {
+        position: fixed;
+        pointer-events: none;
+        z-index: 999;
+        font-size: 1.2rem;
+        animation: sparkleFade 1s ease-out forwards;
+      }
+      @keyframes sparkleFade {
+        0% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0) translateY(-40px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="fw-canvas"></canvas>
+
+    <!-- Phase A -->
+    <div id="ohhh-wrap">
+      <div id="ohhh-text">Ohhh… 🫣</div>
+    </div>
+
+    <!-- Phase B -->
+    <div id="bday-wrap">
+      <h1 class="names-banner">Nandini💛</h1>
+      <p class="names-sub">
+        Wishing the happiest of birthdays to the most wonderful person 💖
+      </p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🌟</div>
+          <div class="card-title">You shine so bright</div>
+          <div class="card-text">
+            Every single day you bring warmth, light, and joy into this world.
+            The way you smile makes everything better.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">💫</div>
+          <div class="card-title">My favourite person</div>
+          <div class="card-text">
+            There is no one else quite like you — funny, kind, caring, and so
+            incredibly precious to me.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎂</div>
+          <div class="card-title">Happy birthday!</div>
+          <div class="card-text">
+            Today is all about you. May every wish you make come true and every
+            moment be full of magic.
+          </div>
+        </div>
+      </div>
+
+      <div class="letter-wrap">
+        <div class="letter-heading">A little letter for you 💌</div>
+        <div class="letter-body">
+          <p>
+            Hey <span class="hi">naana</span> 💖,<br />
+            I wanted to take a moment today — your special day — to tell you how
+            much you mean to me. Not just the big stuff, but all the little
+            things too. The small moments, the silly laughs, the quiet ones… all
+            of it.
+          </p>
+          <p>
+            <span class="hi2">chinnamma</span>, you have this incredible way of
+            making everything feel lighter just by being there. You don't even
+            have to do anything — your presence is enough. I'm so lucky that I
+            get to call you mine.
+          </p>
+          <p>
+            <span class="hi3">bangaram</span>, today the whole universe is
+            celebrating you — and so am I, with my whole heart. Happy birthday.
+            I love you more than words can ever say. 🌸✨
+          </p>
+        </div>
+      </div>
+
+      <div class="closing">🎂</div>
+      <div class="closing-text">
+        Wishing you the most magical birthday ever 🎉✨💖
+      </div>
+    </div>
+
+    <script>
+      requestAnimationFrame(() => document.body.classList.add("in"));
+
+      // Phase A → B transition
+      setTimeout(() => {
+        const t = document.getElementById("ohhh-text");
+        t.classList.remove("pop-again");
+        void t.offsetWidth;
+        t.classList.add("pop-again");
+        t.textContent = "It's your birthday today!! 🎂🎉";
+      }, 1600);
+
+      setTimeout(() => {
+        document.getElementById("ohhh-wrap").classList.add("gone");
+        document.getElementById("bday-wrap").classList.add("show");
+        startFireworks();
+        spawnConfetti();
+      }, 3400);
+
+      // ── Fireworks ──────────────────────────────────────────────
+      const canvas = document.getElementById("fw-canvas");
+      const ctx = canvas.getContext("2d");
+      let fwRunning = false;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      class Particle {
+        constructor(x, y, vx, vy, colour, radius, gravity) {
+          this.x = x;
+          this.y = y;
+          this.vx = vx;
+          this.vy = vy;
+          this.colour = colour;
+          this.radius = radius;
+          this.gravity = gravity || 0.06;
+          this.alpha = 1;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vy += this.gravity;
+          this.vx *= 0.98;
+          this.alpha -= 0.013;
+        }
+        draw() {
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, this.alpha);
+          ctx.fillStyle = this.colour;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      let particles = [];
+
+      function explode(x, y, colours) {
+        const count = 90 + Math.floor(Math.random() * 40);
+        for (let i = 0; i < count; i++) {
+          const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
+          const speed = 2 + Math.random() * 5;
+          const colour = colours[Math.floor(Math.random() * colours.length)];
+          particles.push(
+            new Particle(
+              x,
+              y,
+              Math.cos(angle) * speed,
+              Math.sin(angle) * speed,
+              colour,
+              2 + Math.random() * 2.5,
+            ),
+          );
+        }
+      }
+
+      function launchRocket(tx, ty) {
+        const sx = canvas.width * (0.2 + Math.random() * 0.6);
+        const sy = canvas.height;
+        const palettes = [
+          ["#ff6b6b", "#ffd700", "#ff9ea5", "#ffedaa"],
+          ["#98ffcc", "#87ceeb", "#dda0dd", "#fff"],
+          ["#ffa07a", "#ffd700", "#fff0a0", "#fffbe6"],
+          ["#dda0dd", "#ff6b6b", "#fff", "#ffd700"],
+        ];
+        const colours = palettes[Math.floor(Math.random() * palettes.length)];
+        const frames = 40 + Math.floor(Math.random() * 20);
+        const dx = (tx - sx) / frames;
+        const dy = (ty - sy) / frames;
+        let f = 0;
+        let rx = sx,
+          ry = sy;
+        const trail = [];
+        function step() {
+          if (!fwRunning) return;
+          rx += dx;
+          ry += dy;
+          f++;
+          trail.push({ x: rx, y: ry, a: 1 });
+          if (f >= frames) {
+            explode(rx, ry, colours);
+            return;
+          }
+          requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      const SPOTS = [
+        [0.2, 0.3],
+        [0.8, 0.25],
+        [0.5, 0.4],
+        [0.15, 0.5],
+        [0.85, 0.45],
+      ];
+
+      function fwLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0,0,0,0.18)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        particles = particles.filter((p) => p.alpha > 0);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        if (fwRunning) requestAnimationFrame(fwLoop);
+      }
+
+      function startFireworks() {
+        fwRunning = true;
+        fwLoop();
+        SPOTS.forEach(([rx, ry]) => {
+          setTimeout(
+            () => launchRocket(canvas.width * rx, canvas.height * ry),
+            Math.random() * 800,
+          );
+        });
+        const interval = setInterval(() => {
+          if (!fwRunning) {
+            clearInterval(interval);
+            return;
+          }
+          launchRocket(
+            canvas.width * (0.1 + Math.random() * 0.8),
+            canvas.height * (0.15 + Math.random() * 0.4),
+          );
+        }, 700);
+        setTimeout(() => {
+          fwRunning = false;
+          clearInterval(interval);
+        }, 9000);
+      }
+
+      // ── Confetti ───────────────────────────────────────────────
+      function spawnConfetti() {
+        const shapes = ["■", "●", "▲", "◆"];
+        const colours = [
+          "#ff6b6b",
+          "#ffd700",
+          "#98ffcc",
+          "#87ceeb",
+          "#dda0dd",
+          "#ffa07a",
+          "#fff",
+        ];
+        for (let i = 0; i < 90; i++) {
+          setTimeout(() => {
+            const el = document.createElement("div");
+            el.className = "confetti-piece";
+            el.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+            el.style.left = Math.random() * 100 + "vw";
+            el.style.color =
+              colours[Math.floor(Math.random() * colours.length)];
+            el.style.fontSize = 10 + Math.random() * 12 + "px";
+            el.style.animationDuration = 3 + Math.random() * 4 + "s";
+            el.style.animationDelay = "0s";
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 7000);
+          }, Math.random() * 4000);
+        }
+      }
+
+      // ── Sparkle on click ───────────────────────────────────────
+      document.addEventListener("click", (e) => {
+        const EM = ["✨", "🌸", "⭐", "💛", "🎉", "💫", "🌟"];
+        for (let i = 0; i < 5; i++) {
+          const s = document.createElement("div");
+          s.className = "sparkle";
+          s.textContent = EM[Math.floor(Math.random() * EM.length)];
+          s.style.left = e.clientX + (Math.random() - 0.5) * 60 + "px";
+          s.style.top = e.clientY + (Math.random() - 0.5) * 60 + "px";
+          document.body.appendChild(s);
+          setTimeout(() => s.remove(), 1000);
+        }
+      });
+    </script>
+  </body>
+</html>
